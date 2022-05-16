@@ -1,165 +1,44 @@
-/**
- * Sample React Native App
- * https://github.com/facebook/react-native
- *
- * @format
- * @flow strict-local
- */
+import React from 'react';
+import { NavigationContainer } from '@react-navigation/native';
+import { createStackNavigator } from '@react-navigation/stack';
+import 'react-native-gesture-handler';
 
-import React, { useState } from 'react';
-import {Node} from 'react';
-import onboarding from './components/onboarding';
-import {
-  SafeAreaView,
-  ScrollView,
-  StyleSheet,
-  Image,
-  Text,
-  useColorScheme,
-  View,
-  TextInput,
-  Button,
-  TouchableOpacity,
-  Link,
-} from 'react-native';
+import OnboardingExperience from './src/components/onboardingExperience';
+import LoginScreen from './src/components/LoginScreen';
+import AsyncStorage from '@react-native-async-storage/async-storage';
 
-import {
-  Colors,
-} from 'react-native/Libraries/NewAppScreen';
+const AppStack = createStackNavigator();
 
-const Section = ({children, title}): Node => {
-  const isDarkMode = useColorScheme() === 'dark';
-  return (
-    <View style={styles.sectionContainer}>
-      <Text
-        style={[
-          styles.sectionTitle,
-          {
-            color: isDarkMode ? Colors.white : Colors.black,
-            textAlign: 'center',
-          },
-        ]}>
-        {title}
-      </Text>
-      <Text
-        style={[
-          styles.sectionDescription,
-          {
-            color: isDarkMode ? Colors.light : Colors.dark,
-            textAlign: 'center',
-          },
-        ]}>
-        {children}
-      </Text>
-    </View>
-  );
-};
+const App = () => {
+  const [isFirstLaunch, setIsFirstLaunch] = React.useState(null);
 
-export default function App() {
-  const [email, setEmail] = useState("");
-  const [password, setPassword] = useState("");
+  useEffect(() => {
+    AsyncStorage.getItem('alreadyLaunched').then(value => {
+      if(value == null) {
+        AsyncStorage.setItem('alreadyLaunched', 'true');
+        setIsFirstLaunch(true);
+      } else {
+        setIsFirstLaunch(false);
+      }
+    });
+  }, []);
 
-  return (
-    <SafeAreaView>
-      <ScrollView
-        contentInsetAdjustmentBehavior="automatic"
+  if( isFirstLaunch == null ) {
+    return null;
+  } else if ( isFirstLaunch == ture ) {
+    return (
+      <NavigationContainer>
+        <AppStack.Navigator
+          headerMode="none"
         >
-        
-        <View>
-          <Image style={styles.image} source={require("./assets/icon_n_text_250px.jpg")} />
-          <Section title="Log In">
-            This is going to be an example log in form
-          </Section>
-          
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Email."
-              placeholderTextColor="#003f5c"
-              onChangeText={(email) => setEmail(email)}
-            />
-          </View>
+          <AppStack.Screen name="Onboarding" component={OnboardingExperience} />
+          <AppStack.Screen name="Login" component={LoginScreen} />
+        </AppStack.Navigator>
+      </NavigationContainer>
+    );
+  } else {
+    return <LoginScreen />
+  }
+}
 
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Password."
-              placeholderTextColor="#003f5c"
-              secureTextEntry={true}
-              onChangeText={(password) => setPassword(password)}
-            />
-          </View>
-
-          <TouchableOpacity>
-            <Text style={styles.forgot_button}>Forgot Password?</Text>
-          </TouchableOpacity>
- 
-          {/* <Link to="./components/onboarding"> */}
-            <TouchableOpacity style={styles.loginBtn}>
-              <Text style={styles.loginText}>LOGIN</Text>
-            </TouchableOpacity>
-          {/* </Link> */}
-
-        </View>
-      </ScrollView>
-    </SafeAreaView>
-  );
-};
-
-const styles = StyleSheet.create({
-  sectionContainer: {
-    marginTop: 10,
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-  image: {
-    alignSelf: 'center',
-    marginBottom: 80,
-    marginTop: 25,
-  },
-  sectionTitle: {
-    fontSize: 24,
-    fontWeight: '600',
-  },
-  sectionDescription: {
-    marginTop: 8,
-    marginBottom: 10,
-    fontSize: 18,
-    fontWeight: '400',
-  },
-  highlight: {
-    fontWeight: '700',
-  },
-  inputView: {
-    backgroundColor: "#ADD8E6",
-    width: "70%",
-    height: 45,
-    marginBottom: 10,
-    marginTop: 20,
-    marginLeft: '14%',
-    alignItems: "center",
-  },
-  TextInput: {
-    height: 50,
-    flex: 1,
-    padding: 10,
-    marginLeft: 20,
-  },
-  forgot_button: {
-    height: 30,
-    marginTop: 10,
-    marginBottom: 30,
-    textAlign: "center",
-  },
-  loginBtn: {
-    width: "80%",
-    borderRadius: 25,
-    height: 50,
-    alignItems: "center",
-    justifyContent: "center",
-    marginLeft: '10%',
-    marginTop: 40,
-    marginBottom: 100,
-    backgroundColor: "#ABB8E6",
-  },
-});
+export default App;

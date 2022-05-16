@@ -20,19 +20,19 @@ const OnboardingExperience = ({navigation}) => {
       pages={[
         {
           backgroundColor: '#fff',
-          image: <Image source={require('./assets/onboarding-img.png')} />,
+          //image: <Image source={require('../assets/img.png')} />,
           title: 'Onboarding 1',
           subtitle: 'Done with React Native Onboarding Swiper',
         },
         {
           backgroundColor: '#fff',
-          image: <Image source={require('./assets/onboarding-img1.png')} />,
+          //image: <Image source={require('../assets/img2.png')} />,
           title: 'Onboarding 2',
           subtitle: 'Done with React Native Onboarding Swiper',
         },
         {
           backgroundColor: '#fff',
-          image: <Image source={require('./assets/onboarding-img2.png')} />,
+          //image: <Image source={require('../assets/img3.png')} />,
           title: 'Onboarding 2',
           subtitle: 'Done with React Native Onboarding Swiper',
         },
