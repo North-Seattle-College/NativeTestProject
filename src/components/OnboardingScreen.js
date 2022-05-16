@@ -9,7 +9,7 @@ const Next = ({...props}) => <Button title="Next" color="000000" {...props} />;
 
 const Done = ({...props}) => <Button title="Done" color="000000" {...props} />;
 
-const OnboardingExperience = ({navigation}) => {
+const OnboardingScreen = ({navigation}) => {
   return (
     <Onboarding
       SkipButtonComponent={Skip}
@@ -19,29 +19,29 @@ const OnboardingExperience = ({navigation}) => {
       onDone={() => navigation.navigate('Login')}
       pages={[
         {
-          backgroundColor: '#fff',
-          //image: <Image source={require('../assets/img.png')} />,
-          title: 'Onboarding 1',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          backgroundColor: '#a6e4d0',
+          image: <Image source={require('../assets/img.png')} />,
+          title: 'Onboarding Example 1',
+          subtitle: 'This will be the first onboarding page',
         },
         {
-          backgroundColor: '#fff',
-          //image: <Image source={require('../assets/img2.png')} />,
-          title: 'Onboarding 2',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          backgroundColor: '#fdeb93',
+          image: <Image source={require('../assets/img2.png')} />,
+          title: 'Onboarding Example 2',
+          subtitle: 'This will be the second onboarding page',
         },
         {
-          backgroundColor: '#fff',
-          //image: <Image source={require('../assets/img3.png')} />,
-          title: 'Onboarding 2',
-          subtitle: 'Done with React Native Onboarding Swiper',
+          backgroundColor: '#e9bcbe',
+          image: <Image source={require('../assets/img3.png')} />,
+          title: 'Onboarding Example 3',
+          subtitle: 'This will be the third onboarding page',
         },
       ]}
     />
   );
 };
 
-export default OnboardingExperience;
+export default OnboardingScreen;
 
 const styles = StyleSheet.create({
   container: {

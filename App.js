@@ -1,9 +1,9 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { createStackNavigator } from '@react-navigation/stack';
 import 'react-native-gesture-handler';
 
-import OnboardingExperience from './src/components/onboardingExperience';
+import OnboardingScreen from './src/components/OnboardingScreen';
 import LoginScreen from './src/components/LoginScreen';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 
@@ -25,13 +25,13 @@ const App = () => {
 
   if( isFirstLaunch == null ) {
     return null;
-  } else if ( isFirstLaunch == ture ) {
+  } else if ( isFirstLaunch == true ) {
     return (
       <NavigationContainer>
         <AppStack.Navigator
           headerMode="none"
         >
-          <AppStack.Screen name="Onboarding" component={OnboardingExperience} />
+          <AppStack.Screen name="Onboarding" component={OnboardingScreen} />
           <AppStack.Screen name="Login" component={LoginScreen} />
         </AppStack.Navigator>
       </NavigationContainer>
