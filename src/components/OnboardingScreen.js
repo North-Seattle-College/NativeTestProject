@@ -3,11 +3,13 @@ import {View, Text, Button, Image, StyleSheet} from 'react-native';
 
 import Onboarding from 'react-native-onboarding-swiper';
 
-const Skip = ({...props}) => <Button title="Skip" color="000000" {...props} />;
+const Skip = ({...props}) => <Button title="Skip" color="#000000" {...props} />;
 
-const Next = ({...props}) => <Button title="Next" color="000000" {...props} />;
+const Next = ({...props}) => <Button title="Next" color="#000000" {...props} />;
 
-const Done = ({...props}) => <Button title="Done" color="000000" {...props} />;
+const Done = ({...props}) => <Button title="Done" color="#000000" {...props} />;
+
+const Home = ({...props}) => <Button title="Home" color="#000000" {...props} />;
 
 const OnboardingScreen = ({navigation}) => {
   return (
@@ -15,6 +17,7 @@ const OnboardingScreen = ({navigation}) => {
       SkipButtonComponent={Skip}
       NextButtonComponent={Next}
       DoneButtonComponent={Done}
+      HomeButtonComponent={Home}
       onSkip={() => navigation.navigate('Login')}
       onDone={() => navigation.navigate('Login')}
       pages={[
