@@ -5,7 +5,7 @@ import 'react-native-gesture-handler';
 
 import OnboardingScreen from './src/components/OnboardingScreen';
 import LoginScreen from './src/components/LoginScreen';
-import HomeScreen from './src/components/HomeScreen';
+import HomeScreen from './src/components/HomeScreen.js';
 import BlankScreen from './src/components/BlankScreen.js';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 

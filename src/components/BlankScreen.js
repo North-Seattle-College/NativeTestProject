@@ -48,7 +48,11 @@ export default function BlankScreenFunc() {
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
         <View>
-          <Section title="Blank page"></Section>
+          <Image
+            style={styles.image}
+            source={require('../assets/icon_n_text_250px.jpg')}
+          />
+          {/* <Section title="Blank page"></Section> */}
 
           <View style={styles.inputView}>
             <TextInput
