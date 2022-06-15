@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Node} from 'react';
 import {
@@ -45,9 +44,10 @@ const Section = ({children, title}): Node => {
   );
 };
 
-const LoginScreenFunc = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
+const HomeScreenFunc = ({navigation}) => {
+  const [CreateTrip, setCreateTrip] = useState('');
+  const [TripCode, setTripCode] = useState('');
+  const [EmergencyInfo, setEmergencyInfo] = useState('');
 
   return (
     <SafeAreaView>
@@ -57,57 +57,45 @@ const LoginScreenFunc = ({navigation}) => {
             style={styles.image}
             source={require('../assets/icon_n_text_250px.jpg')}
           />
-          <Section title="Log In">
-            This is going to be an example log in form
-          </Section>
+          <Section title="Home"></Section>
 
           <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Email."
-              placeholderTextColor="#003f5c"
-              onChangeText={email => setEmail(email)}
-            />
-          </View>
-
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Password."
-              placeholderTextColor="#003f5c"
-              secureTextEntry={true}
-              onChangeText={password => setPassword(password)}
-            />
-          </View>
-
-          <TouchableOpacity>
-            <Text style={styles.forgot_button}>Forgot Password?</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.loginBtn}>
             <Button
-              style={styles.loginText}
-              title="Log in"
-              onPress={() => navigation.navigate('Home')}
+              style={styles.TextInput}
+              title="Create Trip."
+              onPress={() => navigation.navigate('Blank')}
+              //onChangeText={CreateTrip => setCreateTrip(CreateTrip)}
             />
-          </TouchableOpacity>
+          </View>
+
+          <View style={styles.inputView}>
+            <Button
+              style={styles.TextInput}
+              title="Trip Code & Join."
+              //placeholderTextColor="#ff0000"
+              //secureTextEntry={true}
+              onPress={() => navigation.navigate('Blank')}
+              //onChangeText={TripCode => setTripCode(TripCode)}
+            />
+          </View>
+
+          <View style={styles.inputView}>
+            <Button
+              style={styles.TextInput}
+              title="Emergency Info."
+              //placeholderTextColor="#ff0000"
+              //secureTextEntry={true}
+              onPress={() => navigation.navigate('Blank')}
+              //onChangeText={EmergencyInfo => setEmergencyInfo(EmergencyInfo)}
+            />
+          </View>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
 };
-function LoginPressed() {
-  alert('Received click');
-  const navigation = useNavigation();
-  navigation.navigate('Home');
-}
 
-// function gotoHomeScreen() {
-//   const navigation = useNavigation();
-//   console.log('Reaches here');
-//   navigation.navigate('Home');
-// }
-export default LoginScreenFunc;
+export default HomeScreenFunc;
 
 const styles = StyleSheet.create({
   sectionContainer: {
@@ -134,7 +122,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   inputView: {
-    backgroundColor: '#ADD8E6',
+    backgroundColor: '#FFFFFF',
     width: '70%',
     height: 45,
     marginBottom: 10,
@@ -147,22 +135,5 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginLeft: 20,
-  },
-  forgot_button: {
-    height: 30,
-    marginTop: 10,
-    marginBottom: 30,
-    textAlign: 'center',
-  },
-  loginBtn: {
-    width: '80%',
-    borderRadius: 25,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: '10%',
-    marginTop: 40,
-    marginBottom: 100,
-    backgroundColor: '#ABB8E6',
   },
 });

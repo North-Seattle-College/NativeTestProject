@@ -1,4 +1,3 @@
-import {useNavigation} from '@react-navigation/native';
 import React, {useState} from 'react';
 import {Node} from 'react';
 import {
@@ -44,11 +43,7 @@ const Section = ({children, title}): Node => {
     </View>
   );
 };
-
-const LoginScreenFunc = ({navigation}) => {
-  const [email, setEmail] = useState('');
-  const [password, setPassword] = useState('');
-
+export default function BlankScreenFunc() {
   return (
     <SafeAreaView>
       <ScrollView contentInsetAdjustmentBehavior="automatic">
@@ -57,57 +52,20 @@ const LoginScreenFunc = ({navigation}) => {
             style={styles.image}
             source={require('../assets/icon_n_text_250px.jpg')}
           />
-          <Section title="Log In">
-            This is going to be an example log in form
-          </Section>
+          {/* <Section title="Blank page"></Section> */}
 
           <View style={styles.inputView}>
             <TextInput
               style={styles.TextInput}
-              placeholder="Email."
-              placeholderTextColor="#003f5c"
-              onChangeText={email => setEmail(email)}
+              placeholder="Enter required content here."
+              placeholderTextColor="#ff0000"
             />
           </View>
-
-          <View style={styles.inputView}>
-            <TextInput
-              style={styles.TextInput}
-              placeholder="Password."
-              placeholderTextColor="#003f5c"
-              secureTextEntry={true}
-              onChangeText={password => setPassword(password)}
-            />
-          </View>
-
-          <TouchableOpacity>
-            <Text style={styles.forgot_button}>Forgot Password?</Text>
-          </TouchableOpacity>
-
-          <TouchableOpacity style={styles.loginBtn}>
-            <Button
-              style={styles.loginText}
-              title="Log in"
-              onPress={() => navigation.navigate('Home')}
-            />
-          </TouchableOpacity>
         </View>
       </ScrollView>
     </SafeAreaView>
   );
-};
-function LoginPressed() {
-  alert('Received click');
-  const navigation = useNavigation();
-  navigation.navigate('Home');
 }
-
-// function gotoHomeScreen() {
-//   const navigation = useNavigation();
-//   console.log('Reaches here');
-//   navigation.navigate('Home');
-// }
-export default LoginScreenFunc;
 
 const styles = StyleSheet.create({
   sectionContainer: {
@@ -134,7 +92,7 @@ const styles = StyleSheet.create({
     fontWeight: '700',
   },
   inputView: {
-    backgroundColor: '#ADD8E6',
+    backgroundColor: '#FFFFFF',
     width: '70%',
     height: 45,
     marginBottom: 10,
@@ -147,22 +105,5 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     marginLeft: 20,
-  },
-  forgot_button: {
-    height: 30,
-    marginTop: 10,
-    marginBottom: 30,
-    textAlign: 'center',
-  },
-  loginBtn: {
-    width: '80%',
-    borderRadius: 25,
-    height: 50,
-    alignItems: 'center',
-    justifyContent: 'center',
-    marginLeft: '10%',
-    marginTop: 40,
-    marginBottom: 100,
-    backgroundColor: '#ABB8E6',
   },
 });
